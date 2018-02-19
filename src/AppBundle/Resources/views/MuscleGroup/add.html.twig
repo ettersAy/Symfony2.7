@@ -1,0 +1,16 @@
+{# src/AppBundle/Resources/views/MuscleGroup/add.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Add a new muscle group</h2>
+
+  {{ include("AppBundle:MuscleGroup:form.html.twig") }}
+
+  <p>
+    Attention : cette annonce sera ajoutée directement
+    sur la page d'accueil après validation du formulaire.
+  </p>
+
+{% endblock %}
