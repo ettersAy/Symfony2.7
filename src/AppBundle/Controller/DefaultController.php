@@ -1,13 +1,12 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use AppBundle\Entity\MuscleGroupe;
+
 class DefaultController extends Controller
 {
     /**
@@ -22,15 +21,23 @@ class DefaultController extends Controller
     }
   
     /**
-     * @Route("/hello/{id}", name="Hello")
+     * @Route("/muscleGroup/", name="listMuscleGroup")
      */
-    public function listAction(Request $request, $id)
+    public function listAction(Request $request)
     {
-        return new Response("Hello World ! $id");
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:MuscleGroup');
+      
+        $listMuscleGroup = $repository->findAll();
+        return $this->render('AppBundle:MuscleGroup:list.html.twig', array(
+            'listMuscleGroup' => $listMuscleGroup
+         ));
     }
   
+  
     /**
-     * @Route("/addMuscleGroupe", name="addMuscleGroupe")
+     * @Route("/addMuscleGroupe/", name="addMuscleGroupe")
      */
     public function addMuscleGroupeAction(Request $request)
     {
